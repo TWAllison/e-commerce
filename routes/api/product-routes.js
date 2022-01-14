@@ -9,16 +9,16 @@ router.get("/", (req, res) => {
     include: [
       {
         model: Category,
-        attributes: ["category_name"],
+        attributes: ["category_name"]
       },
       {
         model: Tag,
-        attributes: ["tag_name"],
-      },
-    ],
+        attributes: ["tag_name"]
+      }
+    ]
   })
-    .then((results) => res.json(results))
-    .catch((err) => {
+    .then(results => res.json(results))
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -33,16 +33,16 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Category,
-        attributes: ["category_name"],
+        attributes: ["category_name"]
       },
       {
         model: Tag,
-        attributes: ["tag_name"],
-      },
-    ],
+        attributes: ["tag_name"]
+      }
+    ]
   })
-    .then((results) => res.json(results))
-    .catch((err) => {
+    .then(results => res.json(results))
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -111,11 +111,11 @@ router.put("/:id", (req, res) => {
       // run both actions
       return Promise.all([
         ProductTag.destroy({ where: { id: productTagsToRemove } }),
-        ProductTag.bulkCreate(newProductTags),
+        ProductTag.bulkCreate(newProductTags)
       ]);
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
-    .catch((err) => {
+    .catch(err => {
       // console.log(err);
       res.status(400).json(err);
     });
@@ -124,17 +124,17 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   Product.destroy({
     where: {
-      id: req.params.id,
-    },
+      id: req.params.id
+    }
   })
-    .then((results) => {
+    .then(results => {
       if (!results) {
         res.status(404).json({ message: "No product found with this id" });
         return;
       }
       res.json(results);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
