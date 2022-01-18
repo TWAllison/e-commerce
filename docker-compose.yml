@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+  web:
+    build: .
+    environment:
+      MYSQL_DATABASE: ecommerce_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    restart: on-failure
