@@ -13,3 +13,5 @@ const sequelize = process.env.JAWSDB_URL
     });
 
 module.exports = sequelize;
+//https://drive.google.com/file/d/1QauE9LGQGhlXqq7L_YMj9jSVrsfCFvXe/view
+//https://drive.google.com/file/d/1w_eU743drg1xlEg8-CLbQyQybPDkEf8z/view
